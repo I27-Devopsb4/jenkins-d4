@@ -1,0 +1,14 @@
+pipeline {
+    agent {
+        label 'java-agent-slave'
+    }
+    stages {
+        stage ('build') {
+            steps { 
+                echo "hello!"
+
+            }
+            
+        }
+    }
+}
