@@ -4,11 +4,23 @@ pipeline {
     }
     stages {
         stage ('build') {
-            steps { 
-                echo "hello!"
-
+            steps {
+                  echo "This is the stage for building MVN app"
             }
-            
+
+        }
+        stage ('ScriptedStage') {
+            steps {
+                echo "******Executing Scripted stages*******"
+
+                script {
+                    def course = "k8s"
+                    if(course == "k8s") {
+                        println("Thanks for enrolling into $course")
+                    }
+                    else ("Do learn k8s")
+                }
+            }
         }
     }
 }
