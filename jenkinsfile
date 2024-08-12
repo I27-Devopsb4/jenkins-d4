@@ -1,14 +1,14 @@
 pipeline {
     agent any
+    tools {
+        maven 'MAVEN_PATH'
+    }
     stages {
-        stage ('TimeoutStage') {
-           steps {
-            timeout(time: 5, unit: 'SECONDS'){
-                echo "Sleeping for 60 seconds"
-                sleep 60
+        stage ('Maven') {
+            steps {
+                echo "******Maven Version*******"
+                sh 'mvn --version'
             }
-
-           }
         }
     }
 }
