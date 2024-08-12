@@ -1,28 +1,14 @@
 pipeline {
-    agent {
-        label 'java-agent-slave'
-    }
+    agent any
     stages {
-        stage ('build') {
-            steps {
-                  echo "This is the stage for building MVN app"
-                  sh 'hostname -i'
+        stage ('TimeoutStage') {
+           steps {
+            timeout(time: 5, unit: 'SECONDS'){
+                echo "Sleeping for 60 seconds"
+                sleep 60
             }
 
-        }
-        stage ('ScriptedStage') {
-            steps {
-                echo "******Executing Scripted stages*******"
-
-                script {
-                    def course = "k8s"
-                    if(course == "k8s") {
-                        println("Thanks for enrolling into $course")
-                    }
-                    else ("Do learn k8s")
-                }
-                sleep 10
-            }
+           }
         }
     }
 }
