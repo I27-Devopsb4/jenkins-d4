@@ -6,7 +6,16 @@ pipeline {
     stages {
         stage ('Maven') {
             steps {
-                echo "******Maven Version*******"
+                echo "******Maven Version with default java*******"
+                sh 'mvn --version'
+            }
+        }
+        stage ('SpecificStage') {
+            tools {
+                java 'JDK-17'
+            }
+            steps {
+                echo "******Maven version with my custom java /opt******"
                 sh 'mvn --version'
             }
         }
